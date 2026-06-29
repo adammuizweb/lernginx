@@ -1,0 +1,56 @@
+# lernginx — Example Nginx Configuration
+# Copy this to /etc/nginx/sites-available/lernginx and adapt paths
+
+server {
+    listen 80;
+    server_name lernginx.lan;
+
+    root /var/www/lernginx.lan/public;
+    index index.php index.html;
+
+    # Deny access to hidden files
+    location ~ /\. {
+        deny all;
+    }
+
+    # PHP-FPM passthrough (adjust socket path for your PHP version)
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_pass unix:/run/php/php8.4-fpm.sock;
+        fastcgi_index index.php;
+    }
+
+    # Static assets caching
+    location /assets/ {
+        expires 7d;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # Module/post clean URL routing
+    location /modul/ {
+        rewrite ^/modul/kategori/(.*)$ /modul/topic/$1 permanent;
+        if (!-e $request_filename) {
+            rewrite ^/modul/topic/([^/]+)/?$ /modul/topic/index.php?slug=$1 last;
+            rewrite ^/modul/topic/(.+)/([^/]+)/?$ /modul/post/detail.php?slug=$2&cat_path=$1 last;
+        }
+    }
+
+    # Dashboard clean URL routing
+    location /dashboard/ {
+        rewrite ^/dashboard/post/(.+)/([^/]+)/?$ /dashboard/index.php?modul=post&cat_path=$1&slug=$2 last;
+        rewrite ^/dashboard/topic/([^/]+)/?$ /dashboard/index.php?modul=topic&slug=$1 last;
+        rewrite ^/dashboard/programs/?$ /dashboard/index.php?modul=programs last;
+        rewrite ^/dashboard/programs/([^/]+)/?$ /dashboard/index.php?modul=programs&slug=$1 last;
+        try_files $uri $uri/ @frontend;
+    }
+
+    # Frontend clean URL routing
+    location / {
+        try_files $uri $uri/ @frontend;
+    }
+
+    location @frontend {
+        rewrite ^/([^/]+)/?$ /index.php?page=$1 last;
+    }
+}
