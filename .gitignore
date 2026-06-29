@@ -23,3 +23,7 @@ test/node_modules/
 test/test-results/
 test/playwright-report/
 
+# Backup files
+*bk
+*header-bak*
+
