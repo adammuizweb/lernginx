@@ -1,20 +1,35 @@
-# Apache .htaccess — legacy reference only
-# This project runs on Nginx. See /etc/nginx/sites-available/lernginx.lan
-
-<FilesMatch "\.(jpg|jpeg|png|webp)$">
-    Require all granted
-</FilesMatch>
+# Apache .htaccess — Frontend + Dashboard clean URL routing
+# For Nginx users, see nginx.conf.example in project root
+# Three .htaccess files work together:
+#   1. /public/.htaccess (this file) — frontend pages
+#   2. /public/modul/.htaccess — module/post URLs
+#   3. /public/dashboard/.htaccess — dashboard sub-routes
 
 RewriteEngine On
 RewriteBase /
 
-# Redirect query to clean URL
-RewriteCond %{QUERY_STRING} (^|&)page=([^&]+)(&|$)
-RewriteRule ^$ /%2/ [R=301,L]
+# Allow direct access to existing files and directories
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
 
-# Pass through existing files/directories
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
+# === Modul routes (delegated to modul/.htaccess) ===
+# Note: modul/.htaccess uses RewriteBase /modul/ so it only processes /modul/* URIs.
+# Apache will naturally process it for paths under /modul/.
 
-# Route everything else to index.php
+# === Dashboard clean URL routes ===
+# /dashboard/post/{cat_path}/{slug}/
+RewriteRule ^dashboard/post/(.+)/([^/]+)/?$ dashboard/index.php?modul=post&cat_path=$1&slug=$2 [L,QSA]
+
+# /dashboard/topic/{slug}/
+RewriteRule ^dashboard/topic/([^/]+)/?$ dashboard/index.php?modul=topic&slug=$1 [L,QSA]
+
+# /dashboard/programs/
+RewriteRule ^dashboard/programs/?$ dashboard/index.php?modul=programs [L,QSA]
+
+# /dashboard/programs/{slug}/
+RewriteRule ^dashboard/programs/([^/]+)/?$ dashboard/index.php?modul=programs&slug=$1 [L,QSA]
+
+# === Frontend clean URL routes ===
+# /{slug}/ -> index.php?page={slug}
 RewriteRule ^([^/]+)/?$ index.php?page=$1 [L,QSA]

@@ -9,7 +9,7 @@ RewriteRule ^ - [L]
 # Routing post: /dashboard/post/{cat_path}/{slug}/
 RewriteRule ^post/(.+)/([^/]+)/?$ index.php?modul=post&cat_path=$1&slug=$2 [L,QSA]
 
-# Routing kategori: /dashboard/kategori/{slug}/
+# Routing topic: /dashboard/topic/{slug}/
 RewriteRule ^topic/([^/]+)/?$ index.php?modul=topic&slug=$1 [L,QSA]
 
 
