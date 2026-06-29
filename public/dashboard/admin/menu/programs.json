@@ -1,0 +1,22 @@
+{
+    "mathematics": {
+        "type": "lottie",
+        "url": "https://lottie.host/3576b445-bd48-49aa-861a-7f074970aef7/vLtIAwij6s.lottie",
+        "desc": "🧮 Math & Logic"
+    },
+    "science": {
+        "type": "lottie",
+        "url": "https://lottie.host/d85d8615-9afe-40d0-bc18-8a4a273177f3/jmJ9UJU7OV.lottie",
+        "desc": "🔬 Science Lab"
+    },
+    "languages": {
+        "type": "lottie",
+        "url": "https://lottie.host/d0c8d6ed-8321-47cf-9b08-73d22b15f161/BvSKXOAWZP.lottie",
+        "desc": "🌐 Language & Culture"
+    },
+    "creative-arts": {
+        "type": "lottie",
+        "url": "https://lottie.host/b5483a2b-6059-4753-a705-9686de6f533b/ICgpWwOdNf.lottie",
+        "desc": "🎨 Creative Arts"
+    }
+}

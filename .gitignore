@@ -1,0 +1,25 @@
+# User uploaded photos
+public/dashboard/profile/static_unchanged/based-registration/foto_profile/
+
+# Environment config (DB credentials, secrets)
+app/.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Playwright test dependencies & artifacts
+test/node_modules/
+test/test-results/
+test/playwright-report/
+

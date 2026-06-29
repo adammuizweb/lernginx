@@ -1,0 +1,269 @@
+/* =========================================================
+   SCCR Login Page — Futuristic Theme
+   Prefix: loginms-
+   Author: ChatGPT (GPT-5)
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* ========== BASE LAYOUT ========== */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at 30% 20%, #0b0f26, #020617 70%);
+  color: #fff;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+body, .loginms-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  height: 100dvh;
+}
+
+
+.loginms-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ========== PARTICLE BACKGROUND ========== */
+.loginms-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(18,24,64,0.8) 0%, rgba(2,8,29,1) 100%);
+}
+
+.loginms-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #5cc3ff, #3b72ff);
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: loginms-float 10s infinite ease-in-out;
+}
+
+@keyframes loginms-float {
+  0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+  50% { transform: translateY(-40px) scale(1.4); opacity: 0.4; }
+}
+
+/* Randomized particle placement */
+.loginms-particle:nth-child(1){ top:10%; left:15%; animation-delay: 0s; }
+.loginms-particle:nth-child(2){ top:40%; left:80%; animation-delay: 2s; }
+.loginms-particle:nth-child(3){ top:70%; left:20%; animation-delay: 4s; }
+.loginms-particle:nth-child(4){ top:85%; left:60%; animation-delay: 6s; }
+.loginms-particle:nth-child(5){ top:25%; left:50%; animation-delay: 1s; }
+
+/* ========== CARD LOGIN ========== */
+.loginms-card {
+  position: relative;
+  margin: auto;
+  z-index: 10;
+  background: rgba(18, 24, 48, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(85, 150, 255, 0.1);
+  box-shadow: 0 0 40px rgba(0, 100, 255, 0.2);
+  border-radius: 20px;
+  width: 380px;
+  padding: 40px 35px 50px;
+  text-align: center;
+  animation: loginms-fadein 1.2s ease;
+}
+
+@keyframes loginms-fadein {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ========== LOGO ========== */
+.loginms-logo img {
+  width: 80px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.loginms-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.loginms-subtext {
+  font-size: 0.85rem;
+  color: #b9c2ff;
+  margin-bottom: 35px;
+}
+
+/* ========== FORM ========== */
+.loginms-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.loginms-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px 15px;
+  font-size: 0.95rem;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.loginms-input::placeholder {
+  color: #a0a5c4;
+}
+
+.loginms-input:focus {
+  border-color: #6cc9ff;
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 15px rgba(108, 201, 255, 0.3);
+  outline: none;
+}
+
+/* ========== BUTTON ========== */
+.loginms-button {
+  background: linear-gradient(90deg, #4c5eff, #5ef2ff);
+  color: #0b0f26;
+  font-weight: 600;
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(80, 170, 255, 0.3);
+}
+
+.loginms-button:hover {
+  background: linear-gradient(90deg, #5ef2ff, #4c5eff);
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(80, 170, 255, 0.5);
+}
+
+/* ========== FOOTER LINKS ========== */
+.loginms-footer {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: #7f8cc9;
+}
+
+.loginms-footer a {
+  color: #56c9ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.loginms-footer a:hover {
+  text-decoration: underline;
+}
+
+/* --- Make inputs shorter + centered inside the card --- */
+.loginms-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center; /* pusatkan elemen form */
+}
+
+/* input tetap responsif tetapi tidak melebar melebihi max-width */
+.loginms-input {
+  width: 100%;
+  max-width: 340px;      /* ubah angka ini sesuai panjang yang diinginkan */
+  margin: 0 auto;        /* pusatkan ketika lebih sempit dari card */
+  box-sizing: border-box; /* padding termasuk dalam width */
+}
+
+/* wrapper password ikut ukuran yang sama */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 340px;      /* harus sama dengan .loginms-input max-width */
+  margin: 0 auto;
+}
+
+/* beri sedikit ruang untuk ikon mata agar tidak menambah lebar input */
+.password-wrapper .loginms-input {
+  padding-right: 46px;   /* ruang untuk ikon, sesuaikan jika perlu */
+}
+
+/* posisi & tampilan ikon mata */
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+  color: #bfc7e8;
+  transition: color 0.15s ease;
+  background: transparent;
+  line-height: 1;
+  padding: 4px;
+  border-radius: 6px;
+}
+
+/* hover state lebih kontras */
+.toggle-password:hover {
+  color: #fff;
+  background: rgba(255,255,255,0.03);
+}
+
+/* center reCAPTCHA dan batasi lebarnya supaya sejajar input */
+.loginms-card .g-recaptcha {
+  max-width: 340px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* mobile: sedikit kecilkan max-width agar pas layar kecil */
+@media (max-width: 420px) {
+  .loginms-input,
+  .password-wrapper,
+  .loginms-card .g-recaptcha {
+    max-width: 90%;
+  }
+}
+
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+  .loginms-card {
+    width: 90%;
+    padding: 30px 20px;
+  }
+}
+        .logo {
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            animation: floatSpin 3s ease-in-out infinite;
+            opacity: 0;
+            animation-delay: 0.3s;
+            animation-fill-mode: forwards;
+        }
+        .logo img {
+            width: 90px;
+            height: auto;
+            display: block;
+        }
+        @keyframes floatSpin {
+            0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20%  { opacity: 1; }
+            50%  { transform: translateY(-6px) rotate(5deg); }
+            100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        }

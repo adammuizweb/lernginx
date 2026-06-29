@@ -1,0 +1,23 @@
+{
+    "glowverse-inggris-online": {
+        "parent": "glowverse-inggris",
+        "type": "image",
+        "url": "",
+        "desc": "Glowverse Inggris Online",
+        "active": true
+    },
+    "scivibe-online": {
+        "parent": "scivibe",
+        "type": "image",
+        "url": "",
+        "desc": "Scivibe Online",
+        "active": true
+    },
+    "glowverse-inggris-offline": {
+        "parent": "glowverse-inggris",
+        "type": "image",
+        "url": "",
+        "desc": "Glowverse Inggris Offline",
+        "active": true
+    }
+}

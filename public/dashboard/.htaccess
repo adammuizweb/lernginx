@@ -1,0 +1,24 @@
+RewriteEngine On
+RewriteBase /dashboard/
+
+# Jangan rewrite jika file/dir nyata
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Routing post: /dashboard/post/{cat_path}/{slug}/
+RewriteRule ^post/(.+)/([^/]+)/?$ index.php?modul=post&cat_path=$1&slug=$2 [L,QSA]
+
+# Routing kategori: /dashboard/kategori/{slug}/
+RewriteRule ^topic/([^/]+)/?$ index.php?modul=topic&slug=$1 [L,QSA]
+
+
+# /dashboard/programs/
+RewriteRule ^programs/?$ index.php?modul=programs [L,QSA]
+
+# /dashboard/programs/{slug}/
+RewriteRule ^programs/([^/]+)/?$ index.php?modul=programs&slug=$1 [L,QSA]
+
+<FilesMatch "\.(jpg|jpeg|png|webp)$">
+    Require all granted
+</FilesMatch>

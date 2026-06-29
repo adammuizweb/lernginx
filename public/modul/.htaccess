@@ -1,0 +1,25 @@
+# Enable rewrites for this module folder
+RewriteEngine On
+RewriteBase /modul/
+
+# Prevent parent rules from interfering (stop processing if this is direct request to a real file/dir)
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Redirect old /modul/kategori/... -> /modul/topic/... (preserve path) (canonical)
+RewriteCond %{REQUEST_URI} ^/modul/kategori/ [NC]
+RewriteRule ^kategori/(.*)$ /modul/topic/$1 [R=301,L]
+
+# Normalize trailing slash for topic and post style (canonical)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^topic/([^/]+)$ /modul/topic/$1/ [R=301,L]
+
+# TOPIC: /modul/topic/{slug}/  -> topic/index.php?slug={slug}
+RewriteRule ^topic/([^/]+)/?$ topic/index.php?slug=$1 [L,QSA]
+
+# POST DETAIL: /modul/topic/{any-path}/{post-slug}/
+# - (.+) captures the category path (may contain slashes)
+# - ([^/]+) captures the post slug (last segment)
+RewriteRule ^topic/(.+)/([^/]+)/?$ post/detail.php?slug=$2&cat_path=$1 [L,QSA]
