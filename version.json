@@ -1,0 +1,10 @@
+{
+  "name": "lernginx",
+  "version": "1.0.0",
+  "build": "2026-06-29",
+  "edition": "Initial Release",
+  "description": "Open-source Learning Management System (LMS) for secondary education",
+  "php": "8.4",
+  "database": "MySQL/MariaDB",
+  "website": "https://github.com/adammuizweb/lernginx"
+}
